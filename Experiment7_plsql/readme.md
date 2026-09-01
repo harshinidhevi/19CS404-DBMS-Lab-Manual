@@ -34,6 +34,15 @@ END;
 - Use an `IF` statement to compare the values.
 - Display the greater number using `DBMS_OUTPUT.PUT_LINE`.
 
+### Code:
+```
+SELECT 'Greater number is: ' ||
+       CASE
+           WHEN 50 > 80 THEN 50
+           ELSE 80
+       END AS Result;
+```
+
 **Expected Output:**  
 
 
@@ -50,6 +59,20 @@ Greater number is: 80
 - Initialize a `sum` variable to 0.
 - Use a `WHILE` loop to iterate from 1 to `n`, adding each number to the sum.
 - Display the result using `DBMS_OUTPUT.PUT_LINE`.
+
+### Code:
+```
+WITH RECURSIVE numbers(n, total) AS (
+    SELECT 1, 1
+    UNION ALL
+    SELECT n + 1, total + n + 1
+    FROM numbers
+    WHERE n < 10
+)
+SELECT 'Sum of first 10 natural numbers is: ' || total AS Result
+FROM numbers
+WHERE n = 10;
+```
 
 **Expected Output:**  
 
@@ -68,6 +91,20 @@ Sum of first 10 natural numbers is: 55
 - Use a loop to generate the next terms using the formula `c = a + b`.
 - Print each term in the series.
 
+### Code:
+```
+WITH RECURSIVE fibonacci(n, a, b) AS (
+    SELECT 1, 0, 1
+    UNION ALL
+    SELECT n + 1, b, a + b
+    FROM fibonacci
+    WHERE n < 7
+)
+SELECT 'Fibonacci sequence: ' ||
+       GROUP_CONCAT(a, ', ') AS Result
+FROM fibonacci;
+```
+
 **Expected Output:**  
 
 <img width="377" height="240" alt="image" src="https://github.com/user-attachments/assets/c0399a93-b15e-4593-969b-1072dc420162" />
@@ -84,6 +121,20 @@ Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8
 - Use a loop to extract each digit using modulo and reverse the number.
 - Display the reversed number.
 
+### Code:
+```
+WITH RECURSIVE reverse_num(n, rev) AS (
+    SELECT 1535, 0
+    UNION ALL
+    SELECT n / 10, rev * 10 + (n % 10)
+    FROM reverse_num
+    WHERE n > 0
+)
+SELECT 'Reversed number is: ' || rev AS Result
+FROM reverse_num
+WHERE n = 0;
+```
+
 **Expected Output:**  
 
 <img width="427" height="243" alt="image" src="https://github.com/user-attachments/assets/53efc58b-fb1b-4082-9555-6e96cb1d6c13" />
@@ -99,6 +150,11 @@ Reversed number is 5351
 - Declare three numeric variables `a`, `b`, and `c`.
 - Use nested `IF-ELSIF-ELSE` conditions to find the largest among the three.
 - Display the largest number.
+
+### Code:
+```
+SELECT 'Largest of three numbers is: ' || MAX(10, 9, 15) AS Result;
+```
 
 **Expected Output:** 
 
