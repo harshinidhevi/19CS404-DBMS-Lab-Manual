@@ -77,6 +77,9 @@ END;
 - Implement exception handling to catch the relevant exceptions and display appropriate messages.
 
 **Output:**  
+
+<img width="477" height="366" alt="image" src="https://github.com/user-attachments/assets/3dd223c9-f818-47b4-ae5c-68e3784ba6c4" />
+
 The program should display the employee details or an error message.
 
 ---
@@ -95,7 +98,10 @@ The program should display the employee details or an error message.
 - Use a parameterized cursor to accept a salary range as input and fetch employees within that range.
 - Implement exception handling to catch and display relevant error messages.
 
-**Output:**  
+**Output:** 
+
+<img width="662" height="372" alt="image" src="https://github.com/user-attachments/assets/8f72bb3e-08ab-45a7-871f-0a0d3978f976" />
+
 The program should display the employee details within the specified salary range or an error message if no data is found.
 
 ---
@@ -115,6 +121,9 @@ The program should display the employee details within the specified salary rang
 - Implement exception handling to catch the relevant exceptions.
 
 **Output:**  
+
+<img width="446" height="353" alt="image" src="https://github.com/user-attachments/assets/499972de-133c-4d63-91bc-c9ed93f2d719" />
+
 The program should display employee names with their department numbers or the appropriate error message if no data is found.
 
 ---
@@ -134,6 +143,9 @@ The program should display employee names with their department numbers or the a
 - Implement exception handling to catch the relevant exceptions and display appropriate messages.
 
 **Output:**  
+
+<img width="442" height="383" alt="image" src="https://github.com/user-attachments/assets/5d5b70e9-2e43-4b15-8a5e-78b30cba59c0" />
+
 The program should display employee records or the appropriate error message if no data is found.
 
 ---
@@ -153,6 +165,9 @@ The program should display employee records or the appropriate error message if 
 - Implement exception handling to handle `NO_DATA_FOUND` or other errors that may occur.
 
 **Output:**  
+
+<img width="612" height="387" alt="image" src="https://github.com/user-attachments/assets/6bdb9491-8e09-4762-a387-4a245b528c73" />
+
 The program should update employee salaries and display a message, or it should display an error message if no data is found.
 
 ---
