@@ -124,7 +124,38 @@ SELECT * FROM sensitive_data;
 - Add a `last_modified` column to the `products` table.
 - Write a **BEFORE UPDATE** trigger on the `products` table to set the `last_modified` column to the current timestamp whenever an update occurs.
 
+## Code:
+```
+CREATE TABLE products (
+    product_id NUMBER PRIMARY KEY,
+    product_name VARCHAR2(50),
+    price NUMBER(10,2)
+);
+
+ALTER TABLE products ADD last_modified TIMESTAMP;
+
+CREATE OR REPLACE TRIGGER update_last_modified
+BEFORE UPDATE ON products
+FOR EACH ROW
+BEGIN
+    :NEW.last_modified := CURRENT_TIMESTAMP;
+END;
+/
+
+INSERT INTO products VALUES (1, 'Laptop', 50000, NULL);
+
+UPDATE products
+SET price = 55000
+WHERE product_id = 1;
+
+SELECT * FROM products;
+```
+
 **Expected Output:**
+
+
+<img width="1223" height="138" alt="image" src="https://github.com/user-attachments/assets/2305eb55-4225-49bf-9681-9eb43a07d3f1" />
+
 - The `last_modified` column in the `products` table is updated automatically to the current date and time when any record is updated.
 
 ---
@@ -134,7 +165,29 @@ SELECT * FROM sensitive_data;
 - Create an `audit_log` table with a counter column.
 - Write an **AFTER UPDATE** trigger on the `customer_orders` table to increment the counter in the `audit_log` table every time a record is updated.
 
+## Code:
+```
+CREATE OR REPLACE TRIGGER trg_after_update_customer_orders
+AFTER UPDATE ON customer_orders
+FOR EACH ROW
+BEGIN
+    UPDATE audit_log
+    SET update_count = update_count + 1;
+END;
+/
+
+UPDATE customer_orders
+SET order_amount = 150
+WHERE order_id = 1;
+
+SELECT * FROM audit_log;
+```
+
 **Expected Output:**
+
+
+<img width="1190" height="388" alt="image" src="https://github.com/user-attachments/assets/08bc02b9-93bd-428a-abbc-823c8c642d3e" />
+
 - The `audit_log` table will maintain a count of how many updates have been made to the `customer_orders` table.
 
 ---
@@ -144,7 +197,26 @@ SELECT * FROM sensitive_data;
 - Write a **BEFORE INSERT** trigger on the `employees` table to check if the inserted salary meets a specific condition (e.g., salary must be greater than 3000).
 - If the condition is not met, raise an error to prevent the insert.
 
+## Code:
+```
+CREATE OR REPLACE TRIGGER trg_check_salary_before_insert
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+    IF :NEW.salary < 3000 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'ERROR: Salary below minimum threshold.');
+    END IF;
+END;
+/
+INSERT INTO employees (emp_id, emp_name, salary) VALUES (101, 'John Doe', 2500);
+INSERT INTO employees (emp_id, emp_name, salary) VALUES (102, 'Jane Smith', 3500);
+```
+
 **Expected Output:**
+
+
+<img width="1187" height="311" alt="image" src="https://github.com/user-attachments/assets/c1af8724-b9aa-4ed8-9202-de1b2c38ddbd" />
+
 - If the inserted salary in the `employees` table is below the condition (e.g., salary < 3000), the insert operation is blocked, and an error message is raised, such as: `ERROR: Salary below minimum threshold.`
 
 ## RESULT
