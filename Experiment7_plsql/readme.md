@@ -35,6 +35,10 @@ END;
 - Display the greater number using `DBMS_OUTPUT.PUT_LINE`.
 
 **Expected Output:**  
+
+
+<img width="311" height="430" alt="image" src="https://github.com/user-attachments/assets/0432a3d9-51be-43b0-85bd-7fc6df87c579" />
+
 Greater number is: 80
 
 ---
@@ -48,6 +52,10 @@ Greater number is: 80
 - Display the result using `DBMS_OUTPUT.PUT_LINE`.
 
 **Expected Output:**  
+
+
+<img width="591" height="241" alt="image" src="https://github.com/user-attachments/assets/06deb5cf-e28c-4a18-84e4-8cc9df6b154d" />
+
 Sum of first 10 natural numbers is: 55
 
 ---
@@ -61,6 +69,9 @@ Sum of first 10 natural numbers is: 55
 - Print each term in the series.
 
 **Expected Output:**  
+
+<img width="377" height="240" alt="image" src="https://github.com/user-attachments/assets/c0399a93-b15e-4593-969b-1072dc420162" />
+
 n = 7  
 Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8
 
@@ -74,6 +85,9 @@ Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8
 - Display the reversed number.
 
 **Expected Output:**  
+
+<img width="427" height="243" alt="image" src="https://github.com/user-attachments/assets/53efc58b-fb1b-4082-9555-6e96cb1d6c13" />
+
 n = 1535  
 Reversed number is 5351
 
@@ -86,7 +100,10 @@ Reversed number is 5351
 - Use nested `IF-ELSIF-ELSE` conditions to find the largest among the three.
 - Display the largest number.
 
-**Expected Output:**  
+**Expected Output:** 
+
+<img width="621" height="95" alt="image" src="https://github.com/user-attachments/assets/b721cc71-1842-4e76-a2cd-cc9cae3f0db7" />
+
 a = 10, b = 9, c = 15  
 Largest of three number is 15
 
