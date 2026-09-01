@@ -30,8 +30,51 @@ END;
 - Create two tables: `employees` (for storing data) and `employee_log` (for logging the inserts).
 - Write an **AFTER INSERT** trigger on the `employees` table to log the new data into the `employee_log` table.
 
+## Code:
+```
+-- Create employees table
+CREATE TABLE employees (
+    emp_id INTEGER PRIMARY KEY,
+    emp_name TEXT,
+    designation TEXT,
+    salary REAL
+);
+
+-- Create employee_log table
+CREATE TABLE employee_log (
+    log_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    emp_id INTEGER,
+    emp_name TEXT,
+    designation TEXT,
+    salary REAL
+);
+
+-- Create AFTER INSERT trigger
+CREATE TRIGGER log_employee_insert
+AFTER INSERT ON employees
+BEGIN
+    INSERT INTO employee_log
+    (emp_id, emp_name, designation, salary)
+    VALUES
+    (NEW.emp_id, NEW.emp_name, NEW.designation, NEW.salary);
+END;
+
+-- Insert employee
+INSERT INTO employees
+(emp_id, emp_name, designation, salary)
+VALUES
+(1, 'Arun', 'Developer', 40000);
+
+-- Display employee log
+SELECT * FROM employee_log;
+```
+
 **Expected Output:**
+
+<img width="403" height="271" alt="image" src="https://github.com/user-attachments/assets/12b77210-066b-4eb2-8700-09680def12c9" />
+
 - A new entry is added to the `employee_log` table each time a new record is inserted into the `employees` table.
+
 
 ---
 
@@ -40,7 +83,38 @@ END;
 - Write a **BEFORE DELETE** trigger on the `sensitive_data` table.
 - Use `RAISE_APPLICATION_ERROR` to prevent deletion and issue a custom error message.
 
+## Code:
+```
+-- Create sensitive_data table
+DROP TABLE IF EXISTS sensitive_data;
+
+CREATE TABLE sensitive_data (
+    id INTEGER PRIMARY KEY,
+    data TEXT
+);
+
+-- Insert sample data
+INSERT INTO sensitive_data (id, data)
+VALUES (1, 'Confidential Information');
+
+-- Create trigger to prevent deletion
+CREATE TRIGGER prevent_delete
+BEFORE DELETE ON sensitive_data
+BEGIN
+    SELECT RAISE(ABORT, 'ERROR: Deletion not allowed on this table.');
+END;
+
+-- Attempt to delete a record
+DELETE FROM sensitive_data
+WHERE id = 1;
+
+SELECT * FROM sensitive_data;
+```
+
 **Expected Output:**
+
+<img width="332" height="286" alt="image" src="https://github.com/user-attachments/assets/ef3eb3e0-5963-4a95-bf5e-1395953d4f90" />
+
 - If an attempt is made to delete a record from `sensitive_data`, an error message is raised, e.g., `ERROR: Deletion not allowed on this table.`
 
 ---
